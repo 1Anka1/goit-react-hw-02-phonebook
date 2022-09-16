@@ -22,11 +22,12 @@ export default class ContactForm extends Component {
     handelSubmit = e => {
         e.preventDefault();
         const { name, number } = this.state;
+        this.props.onSubmit({name, number})
         this.setState({
             name: '',
             number: '',
         })
-        console.log(name, number);
+        // console.log(name, number);
     }
 	render() {
 		const { name, number } = this.state
@@ -43,6 +44,7 @@ export default class ContactForm extends Component {
 								value={name}
 								name="name"
 								onChange={this.handleChange}
+								placeholder = 'Please enter your full name '
 								pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
 								title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
 								required
@@ -57,18 +59,16 @@ export default class ContactForm extends Component {
 								name="number"
 								onChange={this.handleChange}
 								value={number}
+								placeholder = 'Please enter your number'								
 								pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
 								title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
 								required
 							/>
 						</label>
-						<button type ='button'>Add Contact</button>
+						<button className={css.addBtn}>Add Contact</button>
 					</form>
 				</fieldset>
 			</>
 		)
 	}
 }
-
-
-	
