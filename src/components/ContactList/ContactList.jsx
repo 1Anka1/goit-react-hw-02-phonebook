@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import css from './ContactList.module.css'
+
 export default function ContactList({ items, removeContact }) {
 	console.log(items)
 	const elem = items.map(({ name, number, id }) => {
@@ -17,3 +19,13 @@ export default function ContactList({ items, removeContact }) {
 		</div>
 	)
 }
+ContactList.prototype = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  removeContact: PropTypes.func.isRequired,
+};
